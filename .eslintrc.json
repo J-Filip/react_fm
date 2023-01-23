@@ -1,0 +1,24 @@
+// non controversial config -  airbnb is more opinionated.
+
+{
+      // prettier always last in array
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": [],
+
+  "parserOptions": {
+    // how modern js we want
+    "ecmaVersion": 2022,
+
+    // using modern imprt export
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  // waht kind of glabal variables should be allowed (ex. dont alert for fetch)
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  }
+}
