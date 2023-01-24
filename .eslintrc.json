@@ -1,24 +1,45 @@
 // non controversial config -  airbnb is more opinionated.
 
+// prettier always last in array
 {
-      // prettier always last in array
-  "extends": ["eslint:recommended", "prettier"],
-  "plugins": [],
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "rules": {
 
+    // Prop types allow you to add types to a component's props at runtime. In general if you're interested in doing that just use TypeScript.
+    "react/prop-types": 0,
+    // is new since you used to have to import React everywhere but now with the recent revision of React (17) you don't need to.
+    "react/react-in-jsx-scope": 0
+  },
+  "plugins": ["react", "import", "jsx-a11y"],
   "parserOptions": {
-    // how modern js we want
     "ecmaVersion": 2022,
-
-    // using modern imprt export
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
     }
   },
-  // waht kind of glabal variables should be allowed (ex. dont alert for fetch)
   "env": {
     "es6": true,
     "browser": true,
     "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+
+    // We need to set the import plugin to look for both js and jsx extensions or else it won't resolve imports for us.
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
   }
 }
