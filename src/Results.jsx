@@ -16,6 +16,7 @@ export const Results = ( {pets} ) => {
               // this is to implicit and also TS doesn't allow this.
               //     {...pet}
               animal={pet.animal}
+              id={pet.id}
               name={pet.name}
               breed={pet.breed}
               images={pet.images}
