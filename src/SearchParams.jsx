@@ -1,48 +1,49 @@
-import { useEffect, useState } from "react";
+// TODO: add loading state.
+
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+
 import { useBreedList } from "./hooks/useBreedList";
+import { fetchSearch } from "./hooks/fetchSearch";
 
 import { Results } from "./Results";
 
 export const SearchParams = () => {
   const ANIMALS = ["dog", "cat", "rabbit", "bird", "reptile"];
 
-  const [location, setLocation] = useState("");
+  const [requestParams, setRequestParams] = useState({
+    location: "",
+    animal: "",
+    breed: "",
+  });
+
   const [animal, setAnimal] = useState("");
-  const [breed, setBreed] = useState("");
-  const [pets, setPets] = useState([]);
-
   const [breeds] = useBreedList(animal);
-  // only run once after the first render.
-  // the [] at the end of the useEffect is where you declare your data dependencies. React wants to know when to run that effect again. You don't give it data dependencies, it assumes any time any hook changes that you should run the effect again.
-  useEffect(() => {
-    console.log("🎇🎇 USE EFFECT 🎇🎇");
-    getPets();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  async function getPets() {
-    const request = await fetch(
-      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
-    );
-    const data = await request.json();
-    console.log(data);
-    setPets(data.pets);
-  }
+  const results = useQuery(["search", requestParams], fetchSearch);
+  const pets = results?.data?.pets ?? [];
 
   return (
     <div className="search-params">
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          getPets();
+          const formData = new FormData(e.target);
+          const searchData = {
+            location: formData.get("location") ?? "",
+            animal: formData.get("animal") ?? "",
+            breed: formData.get("breed") ?? "",
+          };
+
+          setRequestParams(searchData);
         }}
       >
         <label htmlFor="location">
           Location
           <input
-            onChange={(e) => setLocation(e.target.value)}
+            name="location"
             id="location"
             type="text"
-            value={location}
             placeholder="Add location..."
           />
         </label>
@@ -50,10 +51,9 @@ export const SearchParams = () => {
           Animal
           <select
             id="animal"
-            value={animal}
+            name="animal"
             onChange={(e) => {
               setAnimal(e.target.value);
-              setBreed("");
             }}
           >
             <option label=" "></option>
@@ -69,12 +69,7 @@ export const SearchParams = () => {
 
         <label htmlFor="breed">
           Breed
-          <select
-            id="breed"
-            value={breed}
-            disabled={breeds.length === 0}
-            onChange={(e) => setBreed(e.target.value)}
-          >
+          <select name="breed" id="breed" disabled={breeds.length === 0}>
             <option label=" "></option>
             {breeds.map((breed) => {
               return (
