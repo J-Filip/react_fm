@@ -1,19 +1,14 @@
-# react_fm
+# About the project
+- ❌ ~~create-react-app~~
+- ✅ Vite - basically recreated the create-react-app tool from scracth
+  - useful for knowing there is no real magic going on with our tools.
 
-- we basically recreated the create-react-app tool from scracth
-- useful for knowing there is no real magic going on with our tools.
-
-## the project
 
 - we built controlled form - we're using hooks to control each part of the form. (not the best practice in this case)
 - GOOD FOR: dynamic validation, reacting to a user typing...
 - usually we would use uncontrolled form and just get the data from the form after submit event.
 
-## comments:
-
-- .prettierrc - we use prettier only if project has prettier config so we dont format code we shouldn't!
-- npm lint - --quiet flag because otherwise we get a lot of info.
-- what does jsx do? It's just translating our HTML tags into React.createElement calls. Nothing else.
+# Learned about:
 
 
 ## Hooks 🎣
@@ -23,7 +18,7 @@
 
 ### Why hooks?
 
-1.It’s hard to reuse stateful logic between components
+**1. It’s hard to reuse stateful logic between components**
 
 - React didn't have a great answer to sharing non-visual logic because "React couples UI to a component". This lead to overcomplicated patterns like Higher-order components or Render props.
 - With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. 
@@ -31,7 +26,8 @@
 - custom hook 
   - e.g. fetching some data can be asbstracted and easily resused in diffrenct components.
 
-2. Complex components become hard to understand
+ **2. Complex components become hard to understand**
+
 
 - Hooks let you split one component into smaller functions based on what pieces are related (such as setting up a subscription or fetching data), rather than forcing a split based on lifecycle methods
 - useEffect: happens outside of lifecycle of our component. 
@@ -39,14 +35,7 @@
 
 - useState: to manage states. Returns a stateful value and an updater function to update it.
 
-
-## ?
-- breaking components - In general there are two reasons to break a component into smaller components:
-  reusability and organization. When you want to use the same component in multiple places (a button, a tool tip, etc.) then it's helpful to have one component to maintain, test, use ...
-- balance it - don't try to break everythuing to smallest possible component because it affects performance and gets harder to track.
-- virtual DOM - fast - makes represantation of the real DOM and then updates only parts that changed
-- react dev tools - very useful for debugging.
-- smiješna metoda zvana WET - "Write everything twice" - ne stvarati nepotrebne apstrakcije prerano.
+## Libraries 📕
 
 ### react router 
 - changes drastically between versions.
@@ -61,6 +50,9 @@
 
 - the idea behind React is that you want to cache most of what you fetch from a database. If you fetch the details of pet ID 1, you generally DO NOT want to fetch it again if a user revisits that page: you'd like to cache it. 
 This is what react-query is going to do for you: it's a built in caching layer for these async data stores that works really well within the constraints of React. Let's see how to make our Details page use it.
+
+
+## Notable mentions 👀
 
 
 ### Class components
@@ -79,3 +71,35 @@ This is what react-query is going to do for you: it's a built in caching layer f
 -  we can think of it like a catch block from js try/catch
 - most errors come from bad api calls and user generated input.
 - ! balance between too many and too few error boundaries!
+
+
+### Portals 
+- separate mount point (the actual DOM node which your app is put into) for your React app. A common use case for this is going to be doing modals. 
+- useRef is used to store something in the component “memory” but it doesn’t trigger a new render when the value is updated.
+
+
+
+
+
+
+## Extra comments 💬
+
+- .prettierrc - we use prettier only if project has prettier config so we dont format code we shouldn't!
+- npm lint - --quiet flag because otherwise we get a lot of info.
+- what does jsx do? It's just translating our HTML tags into React.createElement calls. Nothing else.
+- breaking components - In general there are two reasons to break a component into smaller components:
+  reusability and organization. When you want to use the same component in multiple places (a button, a tool tip, etc.) then it's helpful to have one component to maintain, test, use ...
+- balance it - don't try to break everythuing to smallest possible component because it affects performance and gets harder to track.
+- virtual DOM - fast - makes represantation of the real DOM and then updates only parts that changed
+- react dev tools - very useful for debugging.
+- smiješna metoda zvana WET - "Write everything twice" - ne stvarati nepotrebne apstrakcije prerano.
+
+
+## Improvements and features
+
+- deploy
+- dark/light mode
+- add tailwind css
+- add testing
+- add typescript
+- hook to a real petfinder API
