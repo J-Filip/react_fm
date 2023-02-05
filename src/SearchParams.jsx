@@ -29,7 +29,12 @@ export const SearchParams = () => {
 
   return (
     <div className="search-params">
-      
+      {adoptedPet ? (
+        <div className="search-params">
+          <h2>{adoptedPet.name} is waiting for you:</h2>
+        </div>
+      ) : null}
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -43,12 +48,9 @@ export const SearchParams = () => {
           setRequestParams(searchData);
         }}
       >
-
         {adoptedPet ? (
           <div className="pet image-container">
             <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
-        <p>{adoptedPet.name} is  waiting for you:</p>
-            
           </div>
         ) : null}
         <label htmlFor="location">
