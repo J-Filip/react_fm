@@ -1,7 +1,9 @@
 // TODO: add loading state.
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
+
+import { AdoptedPetContext } from "./AdoptedPetContext";
 
 import { useBreedList } from "./hooks/useBreedList";
 import { fetchSearch } from "./hooks/fetchSearch";
@@ -10,6 +12,8 @@ import { Results } from "./Results";
 
 export const SearchParams = () => {
   const ANIMALS = ["dog", "cat", "rabbit", "bird", "reptile"];
+
+  const [adoptedPet] = useContext(AdoptedPetContext);
 
   const [requestParams, setRequestParams] = useState({
     location: "",
@@ -25,6 +29,7 @@ export const SearchParams = () => {
 
   return (
     <div className="search-params">
+      
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -38,6 +43,14 @@ export const SearchParams = () => {
           setRequestParams(searchData);
         }}
       >
+
+        {adoptedPet ? (
+          <div className="pet image-container">
+            <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+        <p>{adoptedPet.name} is  waiting for you:</p>
+            
+          </div>
+        ) : null}
         <label htmlFor="location">
           Location
           <input
