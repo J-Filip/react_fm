@@ -9,7 +9,7 @@ export const fetchPet = async ({ queryKey }) => {
   if (!id) {
     return [];
   }
-  const apiRes = await fetch(`http://pets-v2.dev-apis.com/pets?id=${id}`);
+  const apiRes = await fetch(`https://pets-v2.dev-apis.com/pets?id=${id}`);
 
   // we want to throw an error if unsuccessful request.
   if (!apiRes.ok) {

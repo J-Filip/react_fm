@@ -2,7 +2,7 @@ export const fetchSearch = async ({ queryKey }) => {
   const { location, animal, breed } = queryKey[1];
 
   const apiRes = await fetch(
-    `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    `https://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
   );
 
   // we want to throw an error if unsuccessful request.

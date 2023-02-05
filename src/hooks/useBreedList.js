@@ -6,7 +6,6 @@ import { fetchBreedList } from "./fetchBreedList";
 export function useBreedList(animal) {
   const results = useQuery(["breeds", animal], fetchBreedList);
 
-
   // ! refactored useEffect with react query !
   // useEffect(() => {
   //   if (!animal) {
@@ -21,7 +20,7 @@ export function useBreedList(animal) {
   //     setBreedList([]);
   //     setStatus("loading");
   //     const request = await fetch(
-  //       `http://pets-v2.dev-apis.com/breeds?animal=${animal}`
+  //       `https://pets-v2.dev-apis.com/breeds?animal=${animal}`
   //     );
   //     const data = await request.json();
   //     localCache[animal] = data.breeds || [];
