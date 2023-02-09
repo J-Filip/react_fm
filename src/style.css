@@ -227,7 +227,7 @@
     }
     
     #modal {
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: #2c2b2be3;
       position: fixed;
       left: 0;
       right: 0;
@@ -244,12 +244,11 @@
     }
     
     #modal > div {
-      background-color: white;
       max-width: 500px;
-      padding: 15px;
+      padding: 30px;
       text-align: center;
       border-radius: 30px;
-      background: #faeff0;
+      background: #1d1c1c;
     }
     
     #modal .buttons button {
