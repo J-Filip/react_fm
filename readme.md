@@ -1,17 +1,29 @@
 # About the project
+
+React SPA with dummy data for pet search and adoption. Tries to follow all the best practices as this is a learning project primarily.   
+
+
 - ❌ ~~create-react-app~~
 - ✅ Vite - basically recreated the create-react-app tool from scracth
   - useful for knowing there is no real magic going on with our tools.
+~~ we built controlled form - we're using hooks to control each part of the form. (not the best practice in this case)
+- GOOD FOR: dynamic validation, reacting to a user typing...~~
+- refactored later to an uncontrolled form where we just get the data from the form after submit event.
 
+## Improvements and features
 
-- we built controlled form - we're using hooks to control each part of the form. (not the best practice in this case)
-- GOOD FOR: dynamic validation, reacting to a user typing...
-- usually we would use uncontrolled form and just get the data from the form after submit event.
+- [x] deploy 
+- [x] add tailwind css
+- [ ] persist adopted pet with local storage
+- [ ] add dark/light mode
+- [ ] add testing
+- [ ] add typescript
+- [ ] hook to real petfinder API - 
 
 # Learned about:
 
 
-## Hooks 🎣
+## 🎣 Hooks 
 -  hooks are simple JavaScript functions that we can use to isolate the reusable part from a functional component. Hooks can be stateful and can manage side-effects.
 
 
@@ -35,7 +47,7 @@
 
 - useState: to manage states. Returns a stateful value and an updater function to update it.
 
-## Libraries 📕
+## 📕 Libraries 
 
 ### react router 
 - changes drastically between versions.
@@ -50,6 +62,28 @@
 
 - the idea behind React is that you want to cache most of what you fetch from a database. If you fetch the details of pet ID 1, you generally DO NOT want to fetch it again if a user revisits that page: you'd like to cache it. 
 This is what react-query is going to do for you: it's a built in caching layer for these async data stores that works really well within the constraints of React. Let's see how to make our Details page use it.
+
+
+## 💨 Tailwind CSS 
+
+- utility-first low-level CSS framework
+PROS:
+- create and apply resuable styles
+- no breaking changes because classes are local
+- no naming
+- small size because it's tree shakeable
+
+CONS:
+- it's classes look uuuuuugly as f**k but there is a cool vscode extension for hiding it
+
+- e.g. Bootstrap is a component-based framework with prebuilt components. Basically eliminates the need for writing own css
+- not so flexible 
+
+- tailwind is not tied to React but it's becoming very popular with componend based frameworks
+- bootstrap - fully styled, predefined components
+- tailwind - utilities
+
+- PostCSS - a transpiler that turns a special PostCSS plugin syntax into a Vanilla CSS. You can think of it as the Babel tool for CSS.
 
 
 ## Notable mentions 👀
@@ -76,6 +110,21 @@ This is what react-query is going to do for you: it's a built in caching layer f
 ### Portals 
 - separate mount point (the actual DOM node which your app is put into) for your React app. A common use case for this is going to be doing modals. 
 - useRef is used to store something in the component “memory” but it doesn’t trigger a new render when the value is updated.
+- we created a modal - it's rendered by details component and uses it's state but it's rendered in diffrent DOM node. 
+
+- it made it easier to work with modals or conetxtual navigation withour lifting the state up.
+
+### Context
+
+- global app state 
+- context lets a component receive information from distant parents without passing it as props. 
+- e.g. user - every view will care about user state  ||  shopping cart, UI theme...
+- doesn't follow React way of doing thiungs (being explicit about where the data comes from)
+- ! avoid using until you have to...
+
+
+
+
 
 
 
@@ -93,13 +142,4 @@ This is what react-query is going to do for you: it's a built in caching layer f
 - virtual DOM - fast - makes represantation of the real DOM and then updates only parts that changed
 - react dev tools - very useful for debugging.
 - smiješna metoda zvana WET - "Write everything twice" - ne stvarati nepotrebne apstrakcije prerano.
-
-
-## Improvements and features
-
-- deploy
-- dark/light mode
-- add tailwind css
-- add testing
-- add typescript
-- hook to a real petfinder API
+- useRefs - little confusing for now.
