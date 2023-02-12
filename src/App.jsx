@@ -31,33 +31,30 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-
-
   // we are passing an entire hook as a value so we can use it's state and fucntion to change state in other components.
-const adoptedPet = useState(null)
-
-
+  const adoptedPet = useState(null);
 
   return (
-    // router and query client provider are just wrappers - they provide context to their children and they dont display anything!
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-
-      {/* You have to wrap your app in a Provider. This is the mechanism by which React will notify the higher components to re-render whenever our context changes. Then whatever you pass into the value prop (we passed in the complete hook, the value and updater pair) will exit on the other side whenever we ask for it. */}
-        <AdoptedPetContext.Provider value={adoptedPet}> 
-        <Link to="/">
-          <header>
-            <h1>Adopt Me</h1>
-          </header>
-        </Link>
-        <Routes>
-          <Route path="/controlled" element={<ControlledSearchParams />} />
-          <Route path="/" element={<SearchParams />} />
-          <Route path="/details/:id" element={<Details />} />
-        </Routes>
-        </AdoptedPetContext.Provider>
-      </QueryClientProvider>
-    </BrowserRouter>
+    <div className=" m-0 bg-violet-800 p-0">
+      {/* router and query client provider are just wrappers - they provide context to their children and they dont display anything! */}
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          {/* You have to wrap your app in a Provider. This is the mechanism by which React will notify the higher components to re-render whenever our context changes. Then whatever you pass into the value prop (we passed in the complete hook, the value and updater pair) will exit on the other side whenever we ask for it. */}
+          <AdoptedPetContext.Provider value={adoptedPet}>
+            <Link to="/">
+              <header>
+                <h1>Adopt Me</h1>
+              </header>
+            </Link>
+            <Routes>
+              <Route path="/controlled" element={<ControlledSearchParams />} />
+              <Route path="/" element={<SearchParams />} />
+              <Route path="/details/:id" element={<Details />} />
+            </Routes>
+          </AdoptedPetContext.Provider>
+        </QueryClientProvider>
+      </BrowserRouter>
+    </div>
   );
 };
 let container = document.getElementById("root");
