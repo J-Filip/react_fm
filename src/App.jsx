@@ -41,8 +41,8 @@ const App = () => {
         <QueryClientProvider client={queryClient}>
           {/* You have to wrap your app in a Provider. This is the mechanism by which React will notify the higher components to re-render whenever our context changes. Then whatever you pass into the value prop (we passed in the complete hook, the value and updater pair) will exit on the other side whenever we ask for it. */}
           <AdoptedPetContext.Provider value={adoptedPet}>
-            <Link to="/">
-              <header>
+            <Link className="text-6xl text-white hover:text-orange-100" to="/">
+              <header className="mb-10 w-full bg-gradient-to-b from-indigo-700 via-blue-800 to-indigo-900 p-7  text-center">
                 <h1>Adopt Me</h1>
               </header>
             </Link>

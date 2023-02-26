@@ -28,7 +28,8 @@ export const SearchParams = () => {
   const pets = results?.data?.pets ?? [];
 
   return (
-    <div className="search-params">
+    // <div className="my-0 mx-auto w-11/12 ">
+    <div className="search-params ">
       {adoptedPet ? (
         <div className="search-params">
           <h2>{adoptedPet.name} is waiting for you:</h2>
@@ -36,6 +37,7 @@ export const SearchParams = () => {
       ) : null}
 
       <form
+        className="mb-10 flex flex-col items-center justify-center rounded-lg bg-gray-50 p-10 shadow-lg"
         onSubmit={(e) => {
           e.preventDefault();
           const formData = new FormData(e.target);
@@ -59,6 +61,7 @@ export const SearchParams = () => {
             name="location"
             id="location"
             type="text"
+            className="search-input"
             placeholder="Add location..."
           />
         </label>
@@ -67,6 +70,7 @@ export const SearchParams = () => {
           <select
             id="animal"
             name="animal"
+            className="search-input"
             onChange={(e) => {
               setAnimal(e.target.value);
             }}
@@ -84,7 +88,12 @@ export const SearchParams = () => {
 
         <label htmlFor="breed">
           Breed
-          <select name="breed" id="breed" disabled={breeds.length === 0}>
+          <select
+            name="breed"
+            id="breed"
+            className="search-input disabled:opacity-30"
+            disabled={breeds.length === 0}
+          >
             <option label=" "></option>
             {breeds.map((breed) => {
               return (
@@ -95,7 +104,12 @@ export const SearchParams = () => {
             })}
           </select>
         </label>
-        <button type="submit">Search</button>
+        <button
+          className="rounded border-none bg-purple-500 px-6 py-2 text-white hover:opacity-70"
+          type="submit"
+        >
+          Search
+        </button>
       </form>
 
       <Results pets={pets} />
