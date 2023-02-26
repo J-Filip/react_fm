@@ -85,6 +85,12 @@ CONS:
 
 - PostCSS - a transpiler that turns a special PostCSS plugin syntax into a Vanilla CSS. You can think of it as the Babel tool for CSS.
 
+### Plugins
+
+- plugins let you register new styles for Tailwind to inject into the user’s stylesheet using JavaScript instead of CSS.
+- e.g. official plugins - The @tailwindcss/forms plugin 
+  - adds an opinionated form reset layer that makes it easier to style form elements with utility classes.
+
 
 ## Notable mentions 👀
 
